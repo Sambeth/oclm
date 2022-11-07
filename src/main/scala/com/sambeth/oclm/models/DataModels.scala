@@ -8,12 +8,12 @@ enum Status:
 trait Member {
   def firstName: String
   def lastName: String
-  def otherNames: Option[String]
-  def age: Option[Int]
-  def status: Option[Status]
-  def score: Option[Int]
-  def recency: Option[Int]
-  def gender: Option[String]
+  def otherNames: Option[String] = None
+  def age: Option[Int] = None
+  def status: Option[Status] = None
+  def score: Option[Int] = None
+  def recency: Option[Int] = None
+  def gender: Option[String] = None
 }
 
 abstract case class SimpleMember(firstName: String, lastName: String) extends Member
