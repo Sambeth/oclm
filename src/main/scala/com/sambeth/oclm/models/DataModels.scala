@@ -57,4 +57,5 @@ case object BibleStudy extends ApplyYourselfToFieldMinistry
 case object FiveMinTalk extends ApplyYourselfToFieldMinistry
 
 trait LivingAsChristians extends Assignment
-case object CongregationBibleStudy extends LivingAsChristians
+trait AdHoc(title: String) extends LivingAsChristians
+trait CongregationBibleStudy extends LivingAsChristians
