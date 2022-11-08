@@ -1,43 +1,53 @@
 package com.sambeth.oclm.models
 
-import java.util.concurrent.Flow.Publisher
-
 enum Status:
   case Active, Inactive
 
-enum Gender:
-  case Male, Female
+sealed trait Gender
+trait Male extends Gender
+trait Female extends Gender
+
+sealed trait Potential
+sealed trait Student extends Potential:
+  def score: Option[Int] = None
+
+sealed trait NonStudent extends Potential
+
+//sealed trait Publisher:
+//  this: Student =>
 
 // entities
-trait Member {
+transparent trait Member[Gender, Potential] {
+  def id: Int
   def firstName: String
   def lastName: String
+//  def fullName: String = s"$firstName $otherNames $lastName"
   def otherNames: Option[String] = None
   def age: Option[Int] = None
   def status: Option[Status] = None
-  def recency: Option[Int] = None
-  def gender: Gender
 }
 
-abstract case class SimpleMember(firstName: String, lastName: String) extends Member
+// female
+abstract case class SimpleFemaleMember(id: Int, firstName: String, lastName: String) extends Member[Female, NonStudent]
+abstract case class SimpleFemaleMemberWhoIsAStudent(id: Int, firstName: String, lastName: String) extends Member[Female, Student]
+sealed trait FemalePublisher extends Member[Female, Student]
+case class UnbaptizedFemalePublisher(id: Int, firstName: String, lastName: String) extends FemalePublisher
+trait BaptizedFemalePublisher extends FemalePublisher
+case class SimpleFemaleBaptizedPublisher(id: Int, firstName: String, lastName: String) extends BaptizedFemalePublisher
+case class FemalePioneer(id: Int, firstName: String, lastName: String) extends BaptizedFemalePublisher
 
-sealed trait Student:
-  def score: Option[Int] = None
+// male
+abstract case class SimpleMaleMember(firstName: String, lastName: String) extends Member[Male, NonStudent]
+abstract case class SimpleMaleMemberWhoIsAStudent(firstName: String, lastName: String) extends Member[Male, Student]
+sealed trait MalePublisher extends Member[Male, Student]
+abstract case class UnbaptizedMalePublisher(firstName: String, lastName: String) extends MalePublisher
+trait BaptizedMalePublisher extends MalePublisher
+case class SimpleMaleBaptizedPublisher(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher
+case class MalePioneer(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher
+case class MinisterialServant(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher
+case class Elder(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher
+trait Chairman extends Elder
 
-abstract case class SimpleMemberWhoIsAStudent(firstName: String, lastName: String) extends Member with Student
-
-sealed trait Publisher extends Member:
-  this: Student =>
-
-abstract case class UnbaptizedPublisher(firstName: String, lastName: String) extends Publisher, Student
-
-trait BaptizedPublisher extends Publisher, Student
-
-abstract case class SimpleBaptizedPublisher(firstName: String, lastName: String) extends BaptizedPublisher
-abstract case class Pioneer(firstName: String, lastName: String) extends BaptizedPublisher
-abstract case class MinisterialServant(firstName: String, lastName: String, gender: Gender) extends BaptizedPublisher
-abstract case class Elder(firstName: String, lastName: String, gender: Gender) extends BaptizedPublisher
-class Chairman(firstName: String, lastName: String, gender: Gender) extends Elder(firstName: String, lastName: String, gender: Gender)
 
 // oclm assignments
 trait Assignment
