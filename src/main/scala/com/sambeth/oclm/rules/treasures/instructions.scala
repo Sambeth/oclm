@@ -40,18 +40,18 @@ given ministerialServantCanBeAssignedBibleReading: CanBeAssignedBibleReading[Min
 }
 
 // has to be Male gender
-given pioneerCanBeAssignedBibleReading: CanBeAssignedBibleReading[MalePioneer] = new CanBeAssignedBibleReading[MalePioneer] {
-  def assign(a: MalePioneer): String = s"${a.firstName} ${a.lastName}"
+given pioneerCanBeAssignedBibleReading: CanBeAssignedBibleReading[Pioneer[Male]] = new CanBeAssignedBibleReading[Pioneer[Male]] {
+  def assign(a: Pioneer[Male]): String = s"${a.firstName} ${a.lastName}"
 }
 
-given simpleMemberWhoIsAStudentCanBeAssignedBibleReading: CanBeAssignedBibleReading[SimpleMaleMemberWhoIsAStudent] = new CanBeAssignedBibleReading[SimpleMaleMemberWhoIsAStudent] {
-  def assign(a: SimpleMaleMemberWhoIsAStudent): String = s"${a.firstName} ${a.lastName}"
+given simpleMemberWhoIsAStudentCanBeAssignedBibleReading: CanBeAssignedBibleReading[SimpleMemberWhoIsAStudent[Male]] = new CanBeAssignedBibleReading[SimpleMemberWhoIsAStudent[Male]] {
+  def assign(a: SimpleMemberWhoIsAStudent[Male]): String = s"${a.firstName} ${a.lastName}"
 }
 
-given simpleBaptizedPublisherCanBeAssignedBibleReading: CanBeAssignedBibleReading[SimpleMaleBaptizedPublisher] = new CanBeAssignedBibleReading[SimpleMaleBaptizedPublisher] {
-  def assign(a: SimpleMaleBaptizedPublisher): String = s"${a.firstName} ${a.lastName}"
+given simpleBaptizedPublisherCanBeAssignedBibleReading: CanBeAssignedBibleReading[SimpleBaptizedPublisher[Male]] = new CanBeAssignedBibleReading[SimpleBaptizedPublisher[Male]] {
+  def assign(a: SimpleBaptizedPublisher[Male]): String = s"${a.firstName} ${a.lastName}"
 }
 
-given unbaptizedPublisherCanBeAssignedBibleReading: CanBeAssignedBibleReading[UnbaptizedMalePublisher] = new CanBeAssignedBibleReading[UnbaptizedMalePublisher] {
-  def assign(a: UnbaptizedMalePublisher): String = s"${a.firstName} ${a.lastName}"
+given unbaptizedPublisherCanBeAssignedBibleReading: CanBeAssignedBibleReading[UnbaptizedPublisher[Male]] = new CanBeAssignedBibleReading[UnbaptizedPublisher[Male]] {
+  def assign(a: UnbaptizedPublisher[Male]): String = s"${a.firstName} ${a.lastName}"
 }

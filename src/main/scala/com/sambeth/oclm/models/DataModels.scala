@@ -28,24 +28,15 @@ transparent trait Member[Gender, Potential] {
 }
 
 // female
-abstract case class SimpleFemaleMember(id: Int, firstName: String, lastName: String) extends Member[Female, NonStudent]
-abstract case class SimpleFemaleMemberWhoIsAStudent(id: Int, firstName: String, lastName: String) extends Member[Female, Student]
-sealed trait FemalePublisher extends Member[Female, Student]
-case class UnbaptizedFemalePublisher(id: Int, firstName: String, lastName: String) extends FemalePublisher
-trait BaptizedFemalePublisher extends FemalePublisher
-case class SimpleFemaleBaptizedPublisher(id: Int, firstName: String, lastName: String) extends BaptizedFemalePublisher
-case class FemalePioneer(id: Int, firstName: String, lastName: String) extends BaptizedFemalePublisher
-
-// male
-abstract case class SimpleMaleMember(firstName: String, lastName: String) extends Member[Male, NonStudent]
-abstract case class SimpleMaleMemberWhoIsAStudent(firstName: String, lastName: String) extends Member[Male, Student]
-sealed trait MalePublisher extends Member[Male, Student]
-abstract case class UnbaptizedMalePublisher(firstName: String, lastName: String) extends MalePublisher
-trait BaptizedMalePublisher extends MalePublisher
-case class SimpleMaleBaptizedPublisher(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher
-case class MalePioneer(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher
-case class MinisterialServant(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher
-case class Elder(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher
+abstract case class SimpleMember(id: Int, firstName: String, lastName: String) extends Member[_, NonStudent]
+abstract case class SimpleMemberWhoIsAStudent[G](id: Int, firstName: String, lastName: String) extends Member[G, Student]
+sealed trait Publisher[G] extends Member[G, Student]
+case class UnbaptizedPublisher[G](id: Int, firstName: String, lastName: String) extends Publisher[G]
+trait BaptizedPublisher[G] extends Publisher[G]
+case class SimpleBaptizedPublisher[G](id: Int, firstName: String, lastName: String) extends BaptizedPublisher[G]
+case class Pioneer[G](id: Int, firstName: String, lastName: String) extends BaptizedPublisher[G]
+case class MinisterialServant(id: Int, firstName: String, lastName: String) extends BaptizedPublisher[Male] with Member[Male, Student]
+case class Elder(id: Int, firstName: String, lastName: String) extends BaptizedPublisher[Male] with Member[Male, Student]
 trait Chairman extends Elder
 
 

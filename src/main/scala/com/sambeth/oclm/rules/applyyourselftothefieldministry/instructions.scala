@@ -3,126 +3,118 @@ package com.sambeth.oclm.rules.applyyourselftothefieldministry
 import com.sambeth.oclm.models.*
 
 // videos
-trait CanBeAssignedInitialCallVideo[A] {
+trait CanBeAssignedInitialCallVideo[A <: Elder] {
   def assign(a: A): String
 }
 
-implicit val chairmanCanBeAssignedTenMinutesTalk: CanBeAssignedInitialCallVideo[Chairman] = new CanBeAssignedInitialCallVideo[Chairman] {
+given chairmanCanBeAssignedTenMinutesTalk: CanBeAssignedInitialCallVideo[Chairman] = new CanBeAssignedInitialCallVideo[Chairman] {
   def assign(a: Chairman): String = s"${a.firstName} ${a.lastName}"
 }
 
-trait CanBeAssignedReturnVisitVideo[A] {
+trait CanBeAssignedReturnVisitVideo[A <: Elder] {
   def assign(a: A): String
 }
 
-implicit val elderCanBeAssignedSpiritualGems: CanBeAssignedReturnVisitVideo[Chairman] = new CanBeAssignedReturnVisitVideo[Chairman] {
+given elderCanBeAssignedSpiritualGems: CanBeAssignedReturnVisitVideo[Chairman] = new CanBeAssignedReturnVisitVideo[Chairman] {
   def assign(a: Chairman): String = s"${a.firstName} ${a.lastName}"
 }
 
 // initial calls
-trait CanBeAssignedInitialCall[A] {
+trait CanBeAssignedInitialCall[A <: Member[_, Student]] {
   def assign(a: A): String
 }
 
-implicit val elderCanBeAssignedInitialCall: CanBeAssignedInitialCall[Elder] = new CanBeAssignedInitialCall[Elder] {
+given elderCanBeAssignedInitialCall: CanBeAssignedInitialCall[Elder] = new CanBeAssignedInitialCall[Elder] {
   def assign(a: Elder): String = s"${a.firstName} ${a.lastName}"
 }
 
-implicit val ministerialServantCanBeAssignedInitialCall: CanBeAssignedInitialCall[MinisterialServant] = new CanBeAssignedInitialCall[MinisterialServant] {
+given ministerialServantCanBeAssignedInitialCall: CanBeAssignedInitialCall[MinisterialServant] = new CanBeAssignedInitialCall[MinisterialServant] {
   def assign(a: MinisterialServant): String = s"${a.firstName} ${a.lastName}"
 }
 
-implicit val pioneerCanBeAssignedInitialCall: CanBeAssignedInitialCall[Pioneer] = new CanBeAssignedInitialCall[Pioneer] {
-  def assign(a: Pioneer): String = s"${a.firstName} ${a.lastName}"
+given pioneerCanBeAssignedInitialCall: CanBeAssignedInitialCall[Pioneer[_]] = new CanBeAssignedInitialCall[Pioneer[_]] {
+  def assign(a: Pioneer[_]): String = s"${a.firstName} ${a.lastName}"
 }
 
-implicit val simpleMemberWhoIsAStudentCanBeAssignedInitialCall: CanBeAssignedInitialCall[SimpleMemberWhoIsAStudent] = new CanBeAssignedInitialCall[SimpleMemberWhoIsAStudent] {
-  def assign(a: SimpleMemberWhoIsAStudent): String = s"${a.firstName} ${a.lastName}"
+given simpleMemberWhoIsAStudentCanBeAssignedInitialCall: CanBeAssignedInitialCall[SimpleMemberWhoIsAStudent[_]] = new CanBeAssignedInitialCall[SimpleMemberWhoIsAStudent[_]] {
+  def assign(a: SimpleMemberWhoIsAStudent[_]): String = s"${a.firstName} ${a.lastName}"
 }
 
-implicit val simpleBaptizedPublisherCanBeAssignedInitialCall: CanBeAssignedInitialCall[SimpleBaptizedPublisher] = new CanBeAssignedInitialCall[SimpleBaptizedPublisher] {
-  def assign(a: SimpleBaptizedPublisher): String = s"${a.firstName} ${a.lastName}"
+given simpleBaptizedPublisherCanBeAssignedInitialCall: CanBeAssignedInitialCall[SimpleBaptizedPublisher[_]] = new CanBeAssignedInitialCall[SimpleBaptizedPublisher[_]] {
+  def assign(a: SimpleBaptizedPublisher[_]): String = s"${a.firstName} ${a.lastName}"
 }
 
-implicit val unbaptizedPublisherCanBeAssignedInitialCall: CanBeAssignedInitialCall[UnbaptizedPublisher] = new CanBeAssignedInitialCall[UnbaptizedPublisher] {
-  def assign(a: UnbaptizedPublisher): String = s"${a.firstName} ${a.lastName}"
+given unbaptizedPublisherCanBeAssignedInitialCall: CanBeAssignedInitialCall[UnbaptizedPublisher[_]] = new CanBeAssignedInitialCall[UnbaptizedPublisher[_]] {
+  def assign(a: UnbaptizedPublisher[_]): String = s"${a.firstName} ${a.lastName}"
 }
 
 // return visits
-trait CanBeAssignedReturnVisit[A] {
+trait CanBeAssignedReturnVisit[A <: Member[_, Student]] {
   def assign(a: A): String
 }
 
-implicit val elderCanBeAssignedReturnVisit: CanBeAssignedReturnVisit[Elder] = new CanBeAssignedReturnVisit[Elder] {
+given elderCanBeAssignedReturnVisit: CanBeAssignedReturnVisit[Elder] = new CanBeAssignedReturnVisit[Elder] {
   def assign(a: Elder): String = s"${a.firstName} ${a.lastName}"
 }
 
-implicit val ministerialServantCanBeAssignedReturnVisit: CanBeAssignedReturnVisit[MinisterialServant] = new CanBeAssignedReturnVisit[MinisterialServant] {
+given ministerialServantCanBeAssignedReturnVisit: CanBeAssignedReturnVisit[MinisterialServant] = new CanBeAssignedReturnVisit[MinisterialServant] {
   def assign(a: MinisterialServant): String = s"${a.firstName} ${a.lastName}"
 }
 
-implicit val pioneerCanBeAssignedReturnVisit: CanBeAssignedReturnVisit[Pioneer] = new CanBeAssignedReturnVisit[Pioneer] {
-  def assign(a: Pioneer): String = s"${a.firstName} ${a.lastName}"
+given pioneerCanBeAssignedReturnVisit: CanBeAssignedReturnVisit[Pioneer[_]] = new CanBeAssignedReturnVisit[Pioneer[_]] {
+  def assign(a: Pioneer[_]): String = s"${a.firstName} ${a.lastName}"
 }
 
-implicit val simpleMemberWhoIsAStudentCanBeAssignedReturnVisit: CanBeAssignedReturnVisit[SimpleMemberWhoIsAStudent] = new CanBeAssignedReturnVisit[SimpleMemberWhoIsAStudent] {
-  def assign(a: SimpleMemberWhoIsAStudent): String = s"${a.firstName} ${a.lastName}"
+given simpleMemberWhoIsAStudentCanBeAssignedReturnVisit: CanBeAssignedReturnVisit[SimpleMemberWhoIsAStudent[_]] = new CanBeAssignedReturnVisit[SimpleMemberWhoIsAStudent[_]] {
+  def assign(a: SimpleMemberWhoIsAStudent[_]): String = s"${a.firstName} ${a.lastName}"
 }
 
-implicit val simpleBaptizedPublisherCanBeAssignedReturnVisit: CanBeAssignedReturnVisit[SimpleBaptizedPublisher] = new CanBeAssignedReturnVisit[SimpleBaptizedPublisher] {
-  def assign(a: SimpleBaptizedPublisher): String = s"${a.firstName} ${a.lastName}"
+given simpleBaptizedPublisherCanBeAssignedReturnVisit: CanBeAssignedReturnVisit[SimpleBaptizedPublisher[_]] = new CanBeAssignedReturnVisit[SimpleBaptizedPublisher[_]] {
+  def assign(a: SimpleBaptizedPublisher[_]): String = s"${a.firstName} ${a.lastName}"
 }
 
-implicit val unbaptizedPublisherCanBeAssignedReturnVisit: CanBeAssignedReturnVisit[UnbaptizedPublisher] = new CanBeAssignedReturnVisit[UnbaptizedPublisher] {
-  def assign(a: UnbaptizedPublisher): String = s"${a.firstName} ${a.lastName}"
+given unbaptizedPublisherCanBeAssignedReturnVisit: CanBeAssignedReturnVisit[UnbaptizedPublisher[_]] = new CanBeAssignedReturnVisit[UnbaptizedPublisher[_]] {
+  def assign(a: UnbaptizedPublisher[_]): String = s"${a.firstName} ${a.lastName}"
 }
 
 // bible studies
-trait CanBeAssignedBibleStudy[A] {
+trait CanBeAssignedBibleStudy[A <: Member[_, Student]] {
   def assign(a: A): String
 }
 
-implicit val elderCanBeAssignedBibleStudy: CanBeAssignedBibleStudy[Elder] = new CanBeAssignedBibleStudy[Elder] {
+given elderCanBeAssignedBibleStudy: CanBeAssignedBibleStudy[Elder] = new CanBeAssignedBibleStudy[Elder] {
   def assign(a: Elder): String = s"${a.firstName} ${a.lastName}"
 }
 
-implicit val ministerialServantCanBeAssignedBibleStudy: CanBeAssignedBibleStudy[MinisterialServant] = new CanBeAssignedBibleStudy[MinisterialServant] {
+given ministerialServantCanBeAssignedBibleStudy: CanBeAssignedBibleStudy[MinisterialServant] = new CanBeAssignedBibleStudy[MinisterialServant] {
   def assign(a: MinisterialServant): String = s"${a.firstName} ${a.lastName}"
 }
 
-implicit val pioneerCanBeAssignedBibleStudy: CanBeAssignedBibleStudy[Pioneer] = new CanBeAssignedBibleStudy[Pioneer] {
-  def assign(a: Pioneer): String = s"${a.firstName} ${a.lastName}"
+given pioneerCanBeAssignedBibleStudy: CanBeAssignedBibleStudy[Pioneer[_]] = new CanBeAssignedBibleStudy[Pioneer[_]] {
+  def assign(a: Pioneer[_]): String = s"${a.firstName} ${a.lastName}"
 }
 
-implicit val simpleMemberWhoIsAStudentCanBeAssignedBibleStudy: CanBeAssignedBibleStudy[SimpleMemberWhoIsAStudent] = new CanBeAssignedBibleStudy[SimpleMemberWhoIsAStudent] {
-  def assign(a: SimpleMemberWhoIsAStudent): String = s"${a.firstName} ${a.lastName}"
-}
-
-implicit val simpleBaptizedPublisherCanBeAssignedBibleStudy: CanBeAssignedBibleStudy[SimpleBaptizedPublisher] = new CanBeAssignedBibleStudy[SimpleBaptizedPublisher] {
-  def assign(a: SimpleBaptizedPublisher): String = s"${a.firstName} ${a.lastName}"
-}
-
-implicit val unbaptizedPublisherCanBeAssignedBibleStudy: CanBeAssignedBibleStudy[UnbaptizedPublisher] = new CanBeAssignedBibleStudy[UnbaptizedPublisher] {
-  def assign(a: UnbaptizedPublisher): String = s"${a.firstName} ${a.lastName}"
+given simpleBaptizedPublisherCanBeAssignedBibleStudy: CanBeAssignedBibleStudy[SimpleBaptizedPublisher[_]] = new CanBeAssignedBibleStudy[SimpleBaptizedPublisher[_]] {
+  def assign(a: SimpleBaptizedPublisher[_]): String = s"${a.firstName} ${a.lastName}"
 }
 
 // 5 minutes talks
-trait CanBeAssignedFiveMinTalk[A] {
+trait CanBeAssignedFiveMinTalk[A <: Member[Male, Student]] {
   def assign(a: A): String
 }
 
-implicit val elderCanBeAssignedFiveMinTalk: CanBeAssignedFiveMinTalk[Elder] = new CanBeAssignedFiveMinTalk[Elder] {
+given elderCanBeAssignedFiveMinTalk: CanBeAssignedFiveMinTalk[Elder] = new CanBeAssignedFiveMinTalk[Elder] {
   def assign(a: Elder): String = s"${a.firstName} ${a.lastName}"
 }
 
-implicit val ministerialServantCanBeAssignedFiveMinTalk: CanBeAssignedFiveMinTalk[MinisterialServant] = new CanBeAssignedFiveMinTalk[MinisterialServant] {
+given ministerialServantCanBeAssignedFiveMinTalk: CanBeAssignedFiveMinTalk[MinisterialServant] = new CanBeAssignedFiveMinTalk[MinisterialServant] {
   def assign(a: MinisterialServant): String = s"${a.firstName} ${a.lastName}"
 }
 
-implicit val pioneerCanBeAssignedFiveMinTalk: CanBeAssignedFiveMinTalk[Pioneer] = new CanBeAssignedFiveMinTalk[Pioneer] {
-  def assign(a: Pioneer): String = s"${a.firstName} ${a.lastName}"
+given pioneerCanBeAssignedFiveMinTalk: CanBeAssignedFiveMinTalk[Pioneer[Male]] = new CanBeAssignedFiveMinTalk[Pioneer[Male]] {
+  def assign(a: Pioneer[Male]): String = s"${a.firstName} ${a.lastName}"
 }
 
-implicit val simpleBaptizedPublisherCanBeAssignedFiveMinTalk: CanBeAssignedFiveMinTalk[SimpleBaptizedPublisher] = new CanBeAssignedFiveMinTalk[SimpleBaptizedPublisher] {
-  def assign(a: SimpleBaptizedPublisher): String = s"${a.firstName} ${a.lastName}"
+given simpleBaptizedPublisherCanBeAssignedFiveMinTalk: CanBeAssignedFiveMinTalk[SimpleBaptizedPublisher[Male]] = new CanBeAssignedFiveMinTalk[SimpleBaptizedPublisher[Male]] {
+  def assign(a: SimpleBaptizedPublisher[Male]): String = s"${a.firstName} ${a.lastName}"
 }
