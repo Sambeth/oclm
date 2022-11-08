@@ -37,6 +37,7 @@ abstract case class SimpleBaptizedPublisher(firstName: String, lastName: String)
 abstract case class Pioneer(firstName: String, lastName: String) extends BaptizedPublisher
 abstract case class MinisterialServant(firstName: String, lastName: String, gender: Gender) extends BaptizedPublisher
 abstract case class Elder(firstName: String, lastName: String, gender: Gender) extends BaptizedPublisher
+class Chairman(firstName: String, lastName: String, gender: Gender) extends Elder(firstName: String, lastName: String, gender: Gender)
 
 // oclm assignments
 trait Assignment
@@ -52,7 +53,7 @@ case object InitialCall extends ApplyYourselfToFieldMinistry
 case object ReturnVisitVideo extends ApplyYourselfToFieldMinistry
 case object ReturnVisit extends ApplyYourselfToFieldMinistry
 case object BibleStudy extends ApplyYourselfToFieldMinistry
-case object Talk extends ApplyYourselfToFieldMinistry
+case object FiveMinTalk extends ApplyYourselfToFieldMinistry
 
 trait LivingAsChristians extends Assignment
 case object CongregationBibleStudy extends LivingAsChristians
