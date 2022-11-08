@@ -3,55 +3,34 @@ package com.sambeth.oclm.rules.treasures
 import com.sambeth.oclm.models.*
 
 // treasure from God's word assignments
-trait CanBeAssignedTenMinutesTalk[A <: Member[Male, Student]] {
-  def assign(a: A): String
+trait CanBeAssignedTenMinutesTalk[A <: Member[Male, Student], B <: TreasuresFromGodsWord] {
+  def assign(a: A)(using assignment: TenMinutesTalk): String = s"${a.firstName} ${a.lastName} can be assigned ${assignment.toString}"
 }
 
-given elderCanBeAssignedTenMinutesTalk: CanBeAssignedTenMinutesTalk[Elder] = new CanBeAssignedTenMinutesTalk[Elder] {
-  def assign(a: Elder): String = s"${a.firstName} ${a.lastName}"
+given elderCanBeAssignedTenMinutesTalk: CanBeAssignedTenMinutesTalk[Elder, TenMinutesTalk] = new CanBeAssignedTenMinutesTalk[Elder, TenMinutesTalk] {}
+
+given ministerialServantCanBeAssignedTenMinutesTalk: CanBeAssignedTenMinutesTalk[MinisterialServant, TenMinutesTalk] = new CanBeAssignedTenMinutesTalk[MinisterialServant, TenMinutesTalk] {}
+
+trait CanBeAssignedSpiritualGems[A <: Member[Male, Student], B <: TreasuresFromGodsWord] {
+  def assign(a: A)(using assignment: SpiritualGems): String = s"${a.firstName} ${a.lastName} can be assigned ${assignment.toString}"
 }
 
-given ministerialServantCanBeAssignedTenMinutesTalk: CanBeAssignedTenMinutesTalk[MinisterialServant] = new CanBeAssignedTenMinutesTalk[MinisterialServant] {
-  def assign(a: MinisterialServant): String = s"${a.firstName} ${a.lastName}"
+given elderCanBeAssignedSpiritualGems: CanBeAssignedSpiritualGems[Elder, SpiritualGems] = new CanBeAssignedSpiritualGems[Elder, SpiritualGems] {}
+
+given ministerialServantCanBeAssignedSpiritualGems: CanBeAssignedSpiritualGems[MinisterialServant, SpiritualGems] = new CanBeAssignedSpiritualGems[MinisterialServant, SpiritualGems] {}
+
+trait CanBeAssignedBibleReading[A <: Member[Male, Student], B <: TreasuresFromGodsWord] {
+  def assign(a: A)(using assignment: BibleReading): String = s"${a.firstName} ${a.lastName} can be assigned ${assignment.toString}"
 }
 
-trait CanBeAssignedSpiritualGems[A <: Member[Male, Student]] {
-  def assign(a: A): String
-}
+given elderCanBeAssignedBibleReading: CanBeAssignedBibleReading[Elder, BibleReading] = new CanBeAssignedBibleReading[Elder, BibleReading] {}
 
-given elderCanBeAssignedSpiritualGems: CanBeAssignedSpiritualGems[Elder] = new CanBeAssignedSpiritualGems[Elder] {
-  def assign(a: Elder): String = s"${a.firstName} ${a.lastName}"
-}
+given ministerialServantCanBeAssignedBibleReading: CanBeAssignedBibleReading[MinisterialServant, BibleReading] = new CanBeAssignedBibleReading[MinisterialServant, BibleReading] {}
 
-given ministerialServantCanBeAssignedSpiritualGems: CanBeAssignedSpiritualGems[MinisterialServant] = new CanBeAssignedSpiritualGems[MinisterialServant] {
-  def assign(a: MinisterialServant): String = s"${a.firstName} ${a.lastName}"
-}
+given pioneerCanBeAssignedBibleReading: CanBeAssignedBibleReading[Pioneer[Male], BibleReading] = new CanBeAssignedBibleReading[Pioneer[Male], BibleReading] {}
 
-trait CanBeAssignedBibleReading[A <: Member[Male, Student]] {
-  def assign(a: A): String
-}
+given simpleMemberWhoIsAStudentCanBeAssignedBibleReading: CanBeAssignedBibleReading[SimpleMemberWhoIsAStudent[Male], BibleReading] = new CanBeAssignedBibleReading[SimpleMemberWhoIsAStudent[Male], BibleReading] {}
 
-given elderCanBeAssignedBibleReading: CanBeAssignedBibleReading[Elder] = new CanBeAssignedBibleReading[Elder] {
-  def assign(a: Elder): String = s"${a.firstName} ${a.lastName}"
-}
+given simpleBaptizedPublisherCanBeAssignedBibleReading: CanBeAssignedBibleReading[SimpleBaptizedPublisher[Male], BibleReading] = new CanBeAssignedBibleReading[SimpleBaptizedPublisher[Male], BibleReading] {}
 
-given ministerialServantCanBeAssignedBibleReading: CanBeAssignedBibleReading[MinisterialServant] = new CanBeAssignedBibleReading[MinisterialServant] {
-  def assign(a: MinisterialServant): String = s"${a.firstName} ${a.lastName}"
-}
-
-// has to be Male gender
-given pioneerCanBeAssignedBibleReading: CanBeAssignedBibleReading[Pioneer[Male]] = new CanBeAssignedBibleReading[Pioneer[Male]] {
-  def assign(a: Pioneer[Male]): String = s"${a.firstName} ${a.lastName}"
-}
-
-given simpleMemberWhoIsAStudentCanBeAssignedBibleReading: CanBeAssignedBibleReading[SimpleMemberWhoIsAStudent[Male]] = new CanBeAssignedBibleReading[SimpleMemberWhoIsAStudent[Male]] {
-  def assign(a: SimpleMemberWhoIsAStudent[Male]): String = s"${a.firstName} ${a.lastName}"
-}
-
-given simpleBaptizedPublisherCanBeAssignedBibleReading: CanBeAssignedBibleReading[SimpleBaptizedPublisher[Male]] = new CanBeAssignedBibleReading[SimpleBaptizedPublisher[Male]] {
-  def assign(a: SimpleBaptizedPublisher[Male]): String = s"${a.firstName} ${a.lastName}"
-}
-
-given unbaptizedPublisherCanBeAssignedBibleReading: CanBeAssignedBibleReading[UnbaptizedPublisher[Male]] = new CanBeAssignedBibleReading[UnbaptizedPublisher[Male]] {
-  def assign(a: UnbaptizedPublisher[Male]): String = s"${a.firstName} ${a.lastName}"
-}
+given unbaptizedPublisherCanBeAssignedBibleReading: CanBeAssignedBibleReading[UnbaptizedPublisher[Male], BibleReading] = new CanBeAssignedBibleReading[UnbaptizedPublisher[Male], BibleReading] {}

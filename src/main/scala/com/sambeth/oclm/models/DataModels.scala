@@ -44,17 +44,17 @@ trait Chairman extends Elder
 trait Assignment
 
 trait TreasuresFromGodsWord extends Assignment
-case object TenMinutesTalk extends TreasuresFromGodsWord
-case object SpiritualGems extends TreasuresFromGodsWord
-case object BibleReading extends TreasuresFromGodsWord
+trait TenMinutesTalk extends TreasuresFromGodsWord
+trait SpiritualGems extends TreasuresFromGodsWord
+trait BibleReading extends TreasuresFromGodsWord
 
 trait ApplyYourselfToFieldMinistry extends Assignment
-case object InitialCallVideo extends ApplyYourselfToFieldMinistry
-case object InitialCall extends ApplyYourselfToFieldMinistry
-case object ReturnVisitVideo extends ApplyYourselfToFieldMinistry
-case object ReturnVisit extends ApplyYourselfToFieldMinistry
-case object BibleStudy extends ApplyYourselfToFieldMinistry
-case object FiveMinTalk extends ApplyYourselfToFieldMinistry
+trait InitialCallVideo extends ApplyYourselfToFieldMinistry
+trait InitialCall extends ApplyYourselfToFieldMinistry
+trait ReturnVisitVideo extends ApplyYourselfToFieldMinistry
+trait ReturnVisit extends ApplyYourselfToFieldMinistry
+trait BibleStudy extends ApplyYourselfToFieldMinistry
+trait FiveMinTalk extends ApplyYourselfToFieldMinistry
 
 trait LivingAsChristians extends Assignment
 trait AdHoc(title: String) extends LivingAsChristians
