@@ -27,10 +27,10 @@ given elderCanBeAssignedBibleReading: CanBeAssignedBibleReading[Elder, BibleRead
 
 given ministerialServantCanBeAssignedBibleReading: CanBeAssignedBibleReading[MinisterialServant, BibleReading] = new CanBeAssignedBibleReading[MinisterialServant, BibleReading] {}
 
-given pioneerCanBeAssignedBibleReading: CanBeAssignedBibleReading[Pioneer[Male], BibleReading] = new CanBeAssignedBibleReading[Pioneer[Male], BibleReading] {}
+given pioneerCanBeAssignedBibleReading: CanBeAssignedBibleReading[MalePioneer, BibleReading] = new CanBeAssignedBibleReading[MalePioneer, BibleReading] {}
 
-given simpleMemberWhoIsAStudentCanBeAssignedBibleReading: CanBeAssignedBibleReading[SimpleMemberWhoIsAStudent[Male], BibleReading] = new CanBeAssignedBibleReading[SimpleMemberWhoIsAStudent[Male], BibleReading] {}
+given simpleMemberWhoIsAStudentCanBeAssignedBibleReading: CanBeAssignedBibleReading[SimpleMaleMemberWhoIsAStudent, BibleReading] = new CanBeAssignedBibleReading[SimpleMaleMemberWhoIsAStudent, BibleReading] {}
 
-given simpleBaptizedPublisherCanBeAssignedBibleReading: CanBeAssignedBibleReading[SimpleBaptizedPublisher[Male], BibleReading] = new CanBeAssignedBibleReading[SimpleBaptizedPublisher[Male], BibleReading] {}
+given simpleBaptizedPublisherCanBeAssignedBibleReading: CanBeAssignedBibleReading[SimpleBaptizedMalePublisher, BibleReading] = new CanBeAssignedBibleReading[SimpleBaptizedMalePublisher, BibleReading] {}
 
-given unbaptizedPublisherCanBeAssignedBibleReading: CanBeAssignedBibleReading[UnbaptizedPublisher[Male], BibleReading] = new CanBeAssignedBibleReading[UnbaptizedPublisher[Male], BibleReading] {}
+given unbaptizedPublisherCanBeAssignedBibleReading: CanBeAssignedBibleReading[UnbaptizedMalePublisher, BibleReading] = new CanBeAssignedBibleReading[UnbaptizedMalePublisher, BibleReading] {}
