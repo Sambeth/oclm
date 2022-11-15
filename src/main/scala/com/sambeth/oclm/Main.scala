@@ -51,5 +51,6 @@ object Main extends App {
       "CongregationBibleStudy" -> None
     )
   )
-  val listOfApplyYourselfToFieldMinistryAssignments: List[ApplyYourselfToFieldMinistry] = Nil
+
+  println(femalePioneer.copy(recency=25))
 }
