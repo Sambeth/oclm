@@ -27,5 +27,29 @@ object Main extends App {
   val elder1 = Elder(id = 11, firstName = "All", lastName = "In")
   val elder2 = Elder(id = 12, firstName = "Half", lastName = "Out")
 
-  val chairman = Chairman(id = 13, firstName = "Chair", lastName = "Man")
+  val chairman = Chairman(elder2)
+
+  val oclmScheduleMapperTemplate: Map[String, Map[String, Option[Assignment]]] = Map(
+    "Others" -> Map(
+      "Chairmanship" -> None,
+      "OpeningPrayer" -> None,
+      "ClosingPrayer" -> None
+    ),
+    "TreasuresFromGodsWord" -> Map(
+      "TenMinutesTalk" -> None,
+      "SpiritualGems" -> None,
+      "BibleReading" -> None
+    ),
+    "ApplyYourselfToFieldMinistry" -> Map(
+      "InitialCallVideo" -> None,
+      "InitialCall" -> None,
+      "ReturnVisit" -> None,
+      "BibleStudy" -> None
+    ),
+    "LivingAsChristians" -> Map(
+      "LocalNeeds" -> None,
+      "CongregationBibleStudy" -> None
+    )
+  )
+  val listOfApplyYourselfToFieldMinistryAssignments: List[ApplyYourselfToFieldMinistry] = Nil
 }

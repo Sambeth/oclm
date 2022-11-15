@@ -45,16 +45,17 @@ case class FemalePioneer(id: Int, firstName: String, lastName: String) extends B
 case class MalePioneer(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher
 
 case class MinisterialServant(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher with Member[Male, Student]
-
-trait Lead extends BaptizedMalePublisher with Member[Male, Student]
-case class Elder(id: Int, firstName: String, lastName: String) extends Lead
-case class Chairman(id: Int, firstName: String, lastName: String) extends Lead
+case class Elder(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher with Member[Male, Student]
 
 
 // oclm assignments
 trait Assignment {
   def owner: Member[_, Student]
 }
+
+case class Chairman(owner: Elder) extends Assignment
+case class OpeningPrayer(owner: Elder | MinisterialServant) extends Assignment
+case class ClosingPrayer(owner: Elder | MinisterialServant) extends Assignment
 
 trait TreasuresFromGodsWord extends Assignment
 case class TenMinutesTalk(owner: Elder | MinisterialServant) extends TreasuresFromGodsWord

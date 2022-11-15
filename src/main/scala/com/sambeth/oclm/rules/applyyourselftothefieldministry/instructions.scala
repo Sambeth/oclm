@@ -10,11 +10,11 @@ trait AssignReturnVisitVideo[M]:
   extension (m: M) def assignReturnVisitVideo: ReturnVisitVideo
 
 // videos
-given assignChairmanInitialCallVideo: AssignInitialCallVideo[Chairman] with
-  extension(m: Chairman) def assignInitialCallVideo: InitialCallVideo = InitialCallVideo(m)
+given assignChairmanInitialCallVideo: AssignInitialCallVideo[Elder] with
+  extension(m: Elder) def assignInitialCallVideo: InitialCallVideo = InitialCallVideo(m)
 
-given assignChairmanReturnVisitVideo:  AssignReturnVisitVideo[Chairman] with
-  extension(m: Chairman) def assignReturnVisitVideo: ReturnVisitVideo = ReturnVisitVideo(m)
+given assignElderReturnVisitVideo:  AssignReturnVisitVideo[Elder] with
+  extension(m: Elder) def assignReturnVisitVideo: ReturnVisitVideo = ReturnVisitVideo(m)
 
 
 // initial calls
