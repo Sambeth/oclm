@@ -1,9 +1,9 @@
 package com.sambeth.oclm
 
 import com.sambeth.oclm.models.*
-import com.sambeth.oclm.rules.treasures.*
-import com.sambeth.oclm.rules.livingaschristians.*
-import com.sambeth.oclm.rules.applyyourselftothefieldministry.*
+import com.sambeth.oclm.rules.treasures.given
+import com.sambeth.oclm.rules.livingaschristians.given
+import com.sambeth.oclm.rules.applyyourselftothefieldministry.given
 
 object Main extends App {
   // testing some bits of logic here
@@ -22,8 +22,10 @@ object Main extends App {
   val femalePioneer = FemalePioneer(id = 7, firstName = "Bab", lastName = "Tin")
   val malePioneer = MalePioneer(id = 8, firstName = "Alloy", lastName = "Sius")
 
-  val ministerialServant = MinisterialServant(id = 9, firstName = "Cite", lastName = "Man")
-  val elder = Elder(id = 10, firstName = "All", lastName = "In")
+  val ministerialServant1 = MinisterialServant(id = 9, firstName = "Cite", lastName = "Man")
+  val ministerialServant2 = MinisterialServant(id = 10, firstName = "Ant", lastName = "Man")
+  val elder1 = Elder(id = 11, firstName = "All", lastName = "In")
+  val elder2 = Elder(id = 12, firstName = "Half", lastName = "Out")
 
-  println(simpleFemaleMemberWhoIsAStudent)
+  val chairman = Chairman(id = 13, firstName = "Chair", lastName = "Man")
 }

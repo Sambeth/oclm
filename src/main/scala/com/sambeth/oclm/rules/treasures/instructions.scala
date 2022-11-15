@@ -3,34 +3,30 @@ package com.sambeth.oclm.rules.treasures
 import com.sambeth.oclm.models.*
 
 // treasure from God's word assignments
-trait CanBeAssignedTenMinutesTalk[A <: Member[Male, Student], B <: TreasuresFromGodsWord] {
-  def assign(a: A)(using assignment: TenMinutesTalk): String = s"${a.firstName} ${a.lastName} can be assigned ${assignment.toString}"
-}
+trait AssignTenMinutesTalk[M]:
+  extension(m: M) def assignTenMinutesTalk: TenMinutesTalk
 
-given elderCanBeAssignedTenMinutesTalk: CanBeAssignedTenMinutesTalk[Elder, TenMinutesTalk] = new CanBeAssignedTenMinutesTalk[Elder, TenMinutesTalk] {}
+given assignElderTenMinutesTalk: AssignTenMinutesTalk[Elder] with
+  extension(m: Elder) def assignTenMinutesTalk: TenMinutesTalk = TenMinutesTalk(m)
 
-given ministerialServantCanBeAssignedTenMinutesTalk: CanBeAssignedTenMinutesTalk[MinisterialServant, TenMinutesTalk] = new CanBeAssignedTenMinutesTalk[MinisterialServant, TenMinutesTalk] {}
+given assignMinisterialServantTenMinutesTalk: AssignTenMinutesTalk[MinisterialServant] with
+  extension(m: MinisterialServant) def assignTenMinutesTalk: TenMinutesTalk = TenMinutesTalk(m)
 
-trait CanBeAssignedSpiritualGems[A <: Member[Male, Student], B <: TreasuresFromGodsWord] {
-  def assign(a: A)(using assignment: SpiritualGems): String = s"${a.firstName} ${a.lastName} can be assigned ${assignment.toString}"
-}
 
-given elderCanBeAssignedSpiritualGems: CanBeAssignedSpiritualGems[Elder, SpiritualGems] = new CanBeAssignedSpiritualGems[Elder, SpiritualGems] {}
+// spiritual gems
+trait AssignSpiritualGems[M]:
+  extension (m: M) def assignSpiritualGems: SpiritualGems
 
-given ministerialServantCanBeAssignedSpiritualGems: CanBeAssignedSpiritualGems[MinisterialServant, SpiritualGems] = new CanBeAssignedSpiritualGems[MinisterialServant, SpiritualGems] {}
+given assignElderSpiritualGems: AssignSpiritualGems[Elder] with
+  extension(m: Elder) def assignSpiritualGems: SpiritualGems = SpiritualGems(m)
 
-trait CanBeAssignedBibleReading[A <: Member[Male, Student], B <: TreasuresFromGodsWord] {
-  def assign(a: A)(using assignment: BibleReading): String = s"${a.firstName} ${a.lastName} can be assigned ${assignment.toString}"
-}
+given assignMinisterialServantSpiritualGems: AssignSpiritualGems[MinisterialServant] with
+  extension(m: MinisterialServant) def assignSpiritualGems: SpiritualGems = SpiritualGems(m)
 
-given elderCanBeAssignedBibleReading: CanBeAssignedBibleReading[Elder, BibleReading] = new CanBeAssignedBibleReading[Elder, BibleReading] {}
 
-given ministerialServantCanBeAssignedBibleReading: CanBeAssignedBibleReading[MinisterialServant, BibleReading] = new CanBeAssignedBibleReading[MinisterialServant, BibleReading] {}
+// bible reading
+trait AssignBibleReading[M]:
+  extension (m: M) def assignBibleReading: BibleReading
 
-given pioneerCanBeAssignedBibleReading: CanBeAssignedBibleReading[MalePioneer, BibleReading] = new CanBeAssignedBibleReading[MalePioneer, BibleReading] {}
-
-given simpleMemberWhoIsAStudentCanBeAssignedBibleReading: CanBeAssignedBibleReading[SimpleMaleMemberWhoIsAStudent, BibleReading] = new CanBeAssignedBibleReading[SimpleMaleMemberWhoIsAStudent, BibleReading] {}
-
-given simpleBaptizedPublisherCanBeAssignedBibleReading: CanBeAssignedBibleReading[SimpleBaptizedMalePublisher, BibleReading] = new CanBeAssignedBibleReading[SimpleBaptizedMalePublisher, BibleReading] {}
-
-given unbaptizedPublisherCanBeAssignedBibleReading: CanBeAssignedBibleReading[UnbaptizedMalePublisher, BibleReading] = new CanBeAssignedBibleReading[UnbaptizedMalePublisher, BibleReading] {}
+given assignElderBibleReading: AssignBibleReading[Member[Male, Student]] with
+  extension(m: Member[Male, Student]) def assignBibleReading: BibleReading = BibleReading(m)

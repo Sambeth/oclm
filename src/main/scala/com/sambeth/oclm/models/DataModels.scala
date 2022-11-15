@@ -45,25 +45,30 @@ case class FemalePioneer(id: Int, firstName: String, lastName: String) extends B
 case class MalePioneer(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher
 
 case class MinisterialServant(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher with Member[Male, Student]
-case class Elder(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher with Member[Male, Student]
+
+trait Lead extends BaptizedMalePublisher with Member[Male, Student]
+case class Elder(id: Int, firstName: String, lastName: String) extends Lead
+case class Chairman(id: Int, firstName: String, lastName: String) extends Lead
 
 
 // oclm assignments
-trait Assignment
+trait Assignment {
+  def owner: Member[_, Student]
+}
 
 trait TreasuresFromGodsWord extends Assignment
-trait TenMinutesTalk extends TreasuresFromGodsWord
-trait SpiritualGems extends TreasuresFromGodsWord
-trait BibleReading extends TreasuresFromGodsWord
+case class TenMinutesTalk(owner: Elder | MinisterialServant) extends TreasuresFromGodsWord
+case class SpiritualGems(owner: Elder | MinisterialServant) extends TreasuresFromGodsWord
+case class BibleReading(owner: Member[Male, Student]) extends TreasuresFromGodsWord
 
 trait ApplyYourselfToFieldMinistry extends Assignment
-trait InitialCallVideo extends ApplyYourselfToFieldMinistry
-trait InitialCall extends ApplyYourselfToFieldMinistry
-trait ReturnVisitVideo extends ApplyYourselfToFieldMinistry
-trait ReturnVisit extends ApplyYourselfToFieldMinistry
-trait BibleStudy extends ApplyYourselfToFieldMinistry
-trait FiveMinTalk extends ApplyYourselfToFieldMinistry
+case class InitialCallVideo(owner: Member[Male, Student]) extends ApplyYourselfToFieldMinistry
+case class ReturnVisitVideo(owner: Member[Male, Student]) extends ApplyYourselfToFieldMinistry
+case class InitialCall(owner: Member[_, Student], support: Member[_, Student]) extends ApplyYourselfToFieldMinistry
+case class ReturnVisit(owner: Member[_, Student], support: Member[_, Student]) extends ApplyYourselfToFieldMinistry
+case class BibleStudy(owner: Member[_, Student], support: Member[_, Student]) extends ApplyYourselfToFieldMinistry
+case class FiveMinTalk(owner: Member[Male, Student]) extends ApplyYourselfToFieldMinistry
 
 trait LivingAsChristians extends Assignment
-trait AdHoc(title: String) extends LivingAsChristians
-trait CongregationBibleStudy extends LivingAsChristians
+case class AdHoc(title: String, owner: Elder | MinisterialServant) extends LivingAsChristians
+case class CongregationBibleStudy(owner: Elder) extends LivingAsChristians

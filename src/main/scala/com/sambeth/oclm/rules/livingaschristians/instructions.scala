@@ -2,19 +2,21 @@ package com.sambeth.oclm.rules.livingaschristians
 
 import com.sambeth.oclm.models.*
 
-trait CanBeAssignedCongregationBibleStudy[A <: Member[Male, Student], B <: LivingAsChristians] {
-  def assign(a: A)(using assignment: CongregationBibleStudy): String = s"${a.firstName} ${a.lastName} can be assigned ${assignment.toString}"
-}
 
-given elderCanBeAssignedCongregationBibleStudy: CanBeAssignedCongregationBibleStudy[Elder, CongregationBibleStudy] = new CanBeAssignedCongregationBibleStudy[Elder, CongregationBibleStudy] {}
+// congregation bible study
+trait AssignCongregationBibleStudy[M]:
+  extension (m: M) def assignCongregationBibleStudy: CongregationBibleStudy
 
-given ministerialServantCanBeAssignedCongregationBibleStudy: CanBeAssignedCongregationBibleStudy[MinisterialServant, CongregationBibleStudy] = new CanBeAssignedCongregationBibleStudy[MinisterialServant, CongregationBibleStudy] {}
+given assignElderCongregationBibleStudy: AssignCongregationBibleStudy[Elder] with
+  extension(m: Elder) def assignCongregationBibleStudy: CongregationBibleStudy = CongregationBibleStudy(m)
 
 
-trait CanBeAssignedAdHocAssignment[A <: Member[Male, Student], B <: LivingAsChristians] {
-  def assign(a: A)(using assignment: AdHoc): String = s"${a.firstName} ${a.lastName} can be assigned ${assignment.toString}"
-}
+// ad hoc
+trait AssignAdHoc[M]:
+  extension (m: M) def assignAdHoc(title: String): AdHoc
 
-given elderCanBeAssignedAdHocAssignment: CanBeAssignedAdHocAssignment[Elder, AdHoc] = new CanBeAssignedAdHocAssignment[Elder, AdHoc] {}
+given assignElderAdHoc: AssignAdHoc[Elder] with
+  extension(m: Elder) def assignAdHoc(title: String): AdHoc = AdHoc(title, m)
 
-given ministerialServantCanBeAssignedAdHocAssignment: CanBeAssignedAdHocAssignment[MinisterialServant, AdHoc] = new CanBeAssignedAdHocAssignment[MinisterialServant, AdHoc] {}
+given assignMinisterialServantAdHoc: AssignAdHoc[MinisterialServant] with
+  extension(m: MinisterialServant) def assignAdHoc(title: String): AdHoc = AdHoc(title, m)
