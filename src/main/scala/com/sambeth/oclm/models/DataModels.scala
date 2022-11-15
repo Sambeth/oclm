@@ -67,7 +67,7 @@ case class ReturnVisitVideo(owner: Member[Male, Student]) extends ApplyYourselfT
 case class InitialCall(owner: Member[_, Student], support: Member[_, Student]) extends ApplyYourselfToFieldMinistry
 case class ReturnVisit(owner: Member[_, Student], support: Member[_, Student]) extends ApplyYourselfToFieldMinistry
 case class BibleStudy(owner: Member[_, Student], support: Member[_, Student]) extends ApplyYourselfToFieldMinistry
-case class FiveMinTalk(owner: Member[Male, Student]) extends ApplyYourselfToFieldMinistry
+case class FiveMinutesTalk(owner: Member[Male, Student]) extends ApplyYourselfToFieldMinistry
 
 trait LivingAsChristians extends Assignment
 case class AdHoc(title: String, owner: Elder | MinisterialServant) extends LivingAsChristians

@@ -50,8 +50,8 @@ given assignFemaleStudentBibleStudy: AssignBibleStudy[Member[Female, Student]] w
   extension(m: Member[Female, Student]) def assignBibleStudy(support: Member[Female, Student]): BibleStudy = BibleStudy(m, support)
 
 // 5 minutes talks
-trait AssignFiveMinTalk[M]:
-  extension (m: M) def assignFiveMinTalk: FiveMinTalk
+trait AssignFiveMinutesTalk[M]:
+  extension (m: M) def assignFiveMinutesTalk: FiveMinutesTalk
 
-given assignMaleStudentFiveMinTalk: AssignFiveMinTalk[Member[Male, Student]] with
-  extension(m: Member[Male, Student]) def assignFiveMinTalk: FiveMinTalk = FiveMinTalk(m)
+given assignMaleStudentFiveMinutesTalk: AssignFiveMinutesTalk[Member[Male, Student]] with
+  extension(m: Member[Male, Student]) def assignFiveMinutesTalk: FiveMinutesTalk = FiveMinutesTalk(m)
