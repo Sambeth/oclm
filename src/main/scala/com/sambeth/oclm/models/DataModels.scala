@@ -14,15 +14,7 @@ sealed trait Student extends Potential:
 sealed trait NonStudent extends Potential
 
 // entities
-transparent trait Member[G <: Gender, P <: Potential] {
-  def id: Int
-  def firstName: String
-  def lastName: String
-//  def fullName: String = s"$firstName $otherNames $lastName"
-  def otherNames: Option[String] = None
-  def age: Option[Int] = None
-  def status: Option[Status] = None
-}
+transparent trait Member[G <: Gender, P <: Potential]
 
 case class SimpleFemaleMember(id: Int, firstName: String, lastName: String) extends Member[Female, NonStudent]
 case class SimpleMaleMember(id: Int, firstName: String, lastName: String) extends Member[Male, NonStudent]
