@@ -53,4 +53,5 @@ object Main extends App {
   )
 
   println(femalePioneer.copy(recency=25))
+  println(ministerialServant1.assignSpiritualGems)
 }
