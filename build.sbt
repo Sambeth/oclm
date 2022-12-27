@@ -9,6 +9,6 @@ lazy val root = (project in file("."))
     name := "oclm",
     libraryDependencies ++= Seq(
       ("org.apache.spark" %% "spark-core" % sparkVersion).cross(CrossVersion.for3Use2_13),
-      ("org.apache.spark" %% "spark-sql" % sparkVersion % "provided").cross(CrossVersion.for3Use2_13)
+      ("org.apache.spark" %% "spark-sql" % sparkVersion).cross(CrossVersion.for3Use2_13)
     )
   )

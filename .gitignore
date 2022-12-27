@@ -21,6 +21,8 @@
 /out/
 /bin/
 /sandbox/
+*.xlsx
+*.csv
 
 # intellij
 /src/intellij*/*.iml
