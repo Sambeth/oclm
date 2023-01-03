@@ -43,7 +43,7 @@ case class SimpleMaleMember(id: Int, firstName: String, lastName: String) extend
   }
 }
 
-case class SimpleFemaleMemberWhoIsAStudent(id: Int, firstName: String, lastName: String, recency: Int = 0) extends Member[Female, Student] {
+case class SimpleFemaleMemberWhoIsAStudent(id: Int, firstName: String, lastName: String) extends Member[Female, Student] {
   override def acceptablePair[M <: Member[Female, Student]](member: M): Boolean = member match {
     case m: SimpleFemaleMember => true
     case m: SimpleFemaleMemberWhoIsAStudent => true
@@ -53,7 +53,7 @@ case class SimpleFemaleMemberWhoIsAStudent(id: Int, firstName: String, lastName:
     case _ => false
   }
 }
-case class SimpleMaleMemberWhoIsAStudent(id: Int, firstName: String, lastName: String, recency: Int = 0) extends Member[Male, Student] {
+case class SimpleMaleMemberWhoIsAStudent(id: Int, firstName: String, lastName: String) extends Member[Male, Student] {
   override def acceptablePair[M <: Member[Male, Student]](member: M): Boolean = member match {
     case m: SimpleMaleMember => true
     case m: SimpleMaleMemberWhoIsAStudent => true
@@ -69,7 +69,7 @@ case class SimpleMaleMemberWhoIsAStudent(id: Int, firstName: String, lastName: S
 sealed trait FemalePublisher extends Member[Female, Student]
 sealed trait MalePublisher extends Member[Male, Student]
 
-case class UnbaptizedFemalePublisher(id: Int, firstName: String, lastName: String, recency: Int = 0) extends FemalePublisher {
+case class UnbaptizedFemalePublisher(id: Int, firstName: String, lastName: String) extends FemalePublisher {
   override def acceptablePair[M <: Member[Female, Student]](member: M): Boolean = member match {
     case m: SimpleFemaleMember => true
     case m: SimpleFemaleMemberWhoIsAStudent => true
@@ -79,7 +79,7 @@ case class UnbaptizedFemalePublisher(id: Int, firstName: String, lastName: Strin
     case _ => false
   }
 }
-case class UnbaptizedMalePublisher(id: Int, firstName: String, lastName: String, recency: Int = 0) extends MalePublisher {
+case class UnbaptizedMalePublisher(id: Int, firstName: String, lastName: String) extends MalePublisher {
   override def acceptablePair[M <: Member[Male, Student]](member: M): Boolean = member match {
     case m: SimpleMaleMember => true
     case m: SimpleMaleMemberWhoIsAStudent => true
@@ -94,7 +94,7 @@ case class UnbaptizedMalePublisher(id: Int, firstName: String, lastName: String,
 trait BaptizedFemalePublisher extends FemalePublisher
 trait BaptizedMalePublisher extends MalePublisher
 
-case class SimpleBaptizedFemalePublisher(id: Int, firstName: String, lastName: String, recency: Int = 0) extends BaptizedFemalePublisher {
+case class SimpleBaptizedFemalePublisher(id: Int, firstName: String, lastName: String) extends BaptizedFemalePublisher {
   override def acceptablePair[M <: Member[Female, Student]](member: M): Boolean = member match {
     case m: SimpleFemaleMember => true
     case m: SimpleFemaleMemberWhoIsAStudent => true
@@ -104,7 +104,7 @@ case class SimpleBaptizedFemalePublisher(id: Int, firstName: String, lastName: S
     case _ => false
   }
 }
-case class SimpleBaptizedMalePublisher(id: Int, firstName: String, lastName: String, recency: Int = 0) extends BaptizedMalePublisher {
+case class SimpleBaptizedMalePublisher(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher {
   override def acceptablePair[M <: Member[Male, Student]](member: M): Boolean = member match {
     case m: SimpleMaleMember => true
     case m: SimpleMaleMemberWhoIsAStudent => true
@@ -117,7 +117,7 @@ case class SimpleBaptizedMalePublisher(id: Int, firstName: String, lastName: Str
   }
 }
 
-case class FemalePioneer(id: Int, firstName: String, lastName: String, recency: Int = 0) extends BaptizedFemalePublisher {
+case class FemalePioneer(id: Int, firstName: String, lastName: String) extends BaptizedFemalePublisher {
   override def acceptablePair[M <: Member[Female, Student]](member: M): Boolean = member match {
     case m: SimpleFemaleMember => true
     case m: SimpleFemaleMemberWhoIsAStudent => true
@@ -127,7 +127,7 @@ case class FemalePioneer(id: Int, firstName: String, lastName: String, recency: 
     case _ => false
   }
 }
-case class MalePioneer(id: Int, firstName: String, lastName: String, recency: Int = 0) extends BaptizedMalePublisher {
+case class MalePioneer(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher {
   override def acceptablePair[M <: Member[Male, Student]](member: M): Boolean = member match {
     case m: SimpleMaleMember => true
     case m: SimpleMaleMemberWhoIsAStudent => true
@@ -140,7 +140,7 @@ case class MalePioneer(id: Int, firstName: String, lastName: String, recency: In
   }
 }
 
-case class MinisterialServant(id: Int, firstName: String, lastName: String, recency: Int = 0) extends BaptizedMalePublisher with Member[Male, Student] {
+case class MinisterialServant(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher with Member[Male, Student] {
   override def acceptablePair[M <: Member[Male, Student]](member: M): Boolean = member match {
     case m: SimpleMaleMember => true
     case m: SimpleMaleMemberWhoIsAStudent => true
@@ -152,7 +152,7 @@ case class MinisterialServant(id: Int, firstName: String, lastName: String, rece
     case _ => false
   }
 }
-case class Elder(id: Int, firstName: String, lastName: String, recency: Int = 0) extends BaptizedMalePublisher with Member[Male, Student] {
+case class Elder(id: Int, firstName: String, lastName: String) extends BaptizedMalePublisher with Member[Male, Student] {
   override def acceptablePair[M <: Member[Male, Student]](member: M): Boolean = member match {
     case m: SimpleMaleMember => true
     case m: SimpleMaleMemberWhoIsAStudent => true
