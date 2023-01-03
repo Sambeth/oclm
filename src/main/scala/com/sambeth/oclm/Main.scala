@@ -1,13 +1,11 @@
 package com.sambeth.oclm
 
-import com.sambeth.oclm.models.*
-import com.sambeth.oclm.rules.treasures.given
-import com.sambeth.oclm.rules.livingaschristians.given
-import com.sambeth.oclm.rules.applyyourselftothefieldministry.given
+import com.sambeth.oclm.models._
+import com.sambeth.oclm.rules.treasures.TreasuresImplicits._
+import com.sambeth.oclm.rules.livingaschristians.LivingAsChristiansImplicits._
+import com.sambeth.oclm.rules.applyyourselftothefieldministry.ApplyYourselfToTheFieldMinistryImplicits._
 
 import org.apache.spark.sql.SparkSession
-
-import scala3encoders.given
 
 
 object Main extends App {
@@ -18,6 +16,8 @@ object Main extends App {
     .appName("OCLM")
     .config("spark.master", "local")
     .getOrCreate()
+
+  import spark.implicits._
 
   // read csv
   private val membersDf = spark
@@ -39,19 +39,19 @@ object Main extends App {
 
   val simpleFemaleMembersWhoAreStudents = spark.sql(
     s"SELECT $neededColumns FROM females WHERE student = 'Yes' AND publisher = 'No'"
-  )
+  ).as[SimpleFemaleMemberWhoIsAStudent]
 
   val unbaptizedFemalePublishers = spark.sql(
     s"SELECT $neededColumns FROM females WHERE student = 'Yes' AND publisher = 'Yes' AND baptized = 'No'"
-  )
+  ).as[UnbaptizedFemalePublisher]
 
   val simpleBaptizedFemalePublishers = spark.sql(
     s"SELECT $neededColumns FROM females WHERE student = 'Yes' AND publisher = 'Yes' AND baptized = 'Yes' AND pioneer = 'No'"
-  )
+  ).as[SimpleBaptizedFemalePublisher]
 
   val femalePioneers = spark.sql(
     s"SELECT $neededColumns FROM females WHERE pioneer = 'Yes'"
-  )
+  ).as[FemalePioneer]
 
   // filter only those available
   private val males = spark.sql(
@@ -60,30 +60,28 @@ object Main extends App {
 
   val simpleMaleMembersWhoAreStudents = spark.sql(
     s"SELECT $neededColumns FROM males WHERE student = 'Yes' AND publisher = 'No'"
-  )
+  ).as[SimpleMaleMemberWhoIsAStudent]
 
   val unbaptizedMalePublishers = spark.sql(
     s"SELECT $neededColumns FROM males WHERE student = 'Yes' AND publisher = 'Yes' AND baptized = 'No'"
-  )
+  ).as[UnbaptizedMalePublisher]
 
   val simpleBaptizedMalePublishers = spark.sql(
     s"SELECT $neededColumns FROM males WHERE student = 'Yes' AND publisher = 'Yes' AND baptized = 'Yes' AND pioneer = 'No'"
-  )
+  ).as[SimpleBaptizedMalePublisher]
 
   val malePioneers = spark.sql(
     s"SELECT $neededColumns FROM males WHERE pioneer = 'Yes'"
-  )
+  ).as[MalePioneer]
 
   val ministerialServants = spark.sql(
     s"SELECT $neededColumns FROM males WHERE ministerialServant = 'Yes'"
-  )
+  ).as[MinisterialServant]
 
   val elders = spark.sql(
     s"SELECT $neededColumns FROM males WHERE elder = 'Yes'"
   ).as[Elder]
 
-  ministerialServants.show(10)
-  elders.show()
 
 //  val oclmScheduleMapperTemplate: Map[String, Map[String, Option[Assignment]]] = Map(
 //    "Others" -> Map(
